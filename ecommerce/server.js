@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-require("dotenv").config();
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const connectDB = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
@@ -8,25 +8,25 @@ const productRoutes = require("./routes/productRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Body parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Reuse one connection attempt per server process
+// --- Database: connect once, reuse everywhere ---
 let dbPromise;
 
 function ensureDatabase() {
   if (!dbPromise) {
     dbPromise = connectDB().catch((error) => {
-      // Allow a later request to retry after a connection failure
+      // Let next request retry if first connect fails
       dbPromise = null;
       throw error;
     });
   }
-
   return dbPromise;
 }
 
-// Connect before handling API requests
+// Block /api until DB is ready
 app.use("/api", async (req, res, next) => {
   try {
     await ensureDatabase();
@@ -37,27 +37,28 @@ app.use("/api", async (req, res, next) => {
   }
 });
 
-// Product API routes
+// --- API Routes ---
 app.use("/api/products", productRoutes);
 
-// Unknown API routes
+// Unknown API route
 app.use("/api", (req, res) => {
   res.status(404).json({ message: "API route not found." });
 });
 
-// Serve pages, CSS, JavaScript, and images
+// --- Frontend ---
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Unknown pages
+// Unknown page
 app.use((req, res) => {
   res.status(404).send("Page not found.");
 });
 
-// Start locally. On Vercel, export the app for the platform to run.
+// --- Start Server ---
+// On Vercel, just export app. Locally, connect + listen.
 if (!process.env.VERCEL) {
   ensureDatabase()
     .then(() => {
