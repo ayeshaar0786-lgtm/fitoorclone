@@ -17,32 +17,52 @@ app.use(express.static(path.join(__dirname, "public")));
 // Product API routes: /api/products and /api/products/:id
 app.use("/api/products", productRoutes);
 
-// Clear English response for other API paths
+// Response for other API paths
 app.use("/api", (req, res) => {
   res.status(404).json({ message: "API route not found." });
 });
 
-// Serve the homepage at /
+// Homepage
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Handle other missing pages
+// 404 for missing pages
 app.use((req, res) => {
   res.status(404).send("Page not found.");
 });
 
-async function startServer() {
-  try {
-    await connectDB();
+// --- WORKS ON BOTH LOCAL AND VERCEL ---
 
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Failed to start server:", error.message);
-    process.exit(1);
+let isConnected = false;
+
+async function ensureDB() {
+  if (!isConnected) {
+    await connectDB();
+    isConnected = true;
   }
 }
 
-startServer();
+// Connect to DB before handling requests (important for Vercel)
+app.use(async (req, res, next) => {
+  try {
+    await ensureDB();
+  } catch (err) {
+    console.error("DB Error:", err.message);
+  }
+  next();
+});
+
+// Start server only on local machine, not on Vercel
+if (!process.env.VERCEL) {
+  ensureDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
+  }).catch((err) => {
+    console.error("Failed to start server:", err.message);
+  });
+}
+
+// Must export app for Vercel
+module.exports = app;
