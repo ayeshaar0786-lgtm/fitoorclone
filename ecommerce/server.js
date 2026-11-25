@@ -11,58 +11,64 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve index.html, shop.html, product.html, cart.html, CSS, JS, and images
-app.use(express.static(path.join(__dirname, "public")));
+// Reuse one connection attempt per server process
+let dbPromise;
 
-// Product API routes: /api/products and /api/products/:id
+function ensureDatabase() {
+  if (!dbPromise) {
+    dbPromise = connectDB().catch((error) => {
+      // Allow a later request to retry after a connection failure
+      dbPromise = null;
+      throw error;
+    });
+  }
+
+  return dbPromise;
+}
+
+// Connect before handling API requests
+app.use("/api", async (req, res, next) => {
+  try {
+    await ensureDatabase();
+    next();
+  } catch (error) {
+    console.error("Database connection error:", error.message);
+    res.status(503).json({ message: "Database is unavailable." });
+  }
+});
+
+// Product API routes
 app.use("/api/products", productRoutes);
 
-// Response for other API paths
+// Unknown API routes
 app.use("/api", (req, res) => {
   res.status(404).json({ message: "API route not found." });
 });
 
-// Homepage
+// Serve pages, CSS, JavaScript, and images
+app.use(express.static(path.join(__dirname, "public")));
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// 404 for missing pages
+// Unknown pages
 app.use((req, res) => {
   res.status(404).send("Page not found.");
 });
 
-// --- WORKS ON BOTH LOCAL AND VERCEL ---
-
-let isConnected = false;
-
-async function ensureDB() {
-  if (!isConnected) {
-    await connectDB();
-    isConnected = true;
-  }
-}
-
-// Connect to DB before handling requests (important for Vercel)
-app.use(async (req, res, next) => {
-  try {
-    await ensureDB();
-  } catch (err) {
-    console.error("DB Error:", err.message);
-  }
-  next();
-});
-
-// Start server only on local machine, not on Vercel
+// Start locally. On Vercel, export the app for the platform to run.
 if (!process.env.VERCEL) {
-  ensureDB().then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
+  ensureDatabase()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.error("Failed to start server:", error.message);
+      process.exit(1);
     });
-  }).catch((err) => {
-    console.error("Failed to start server:", err.message);
-  });
 }
 
-// Must export app for Vercel
 module.exports = app;
