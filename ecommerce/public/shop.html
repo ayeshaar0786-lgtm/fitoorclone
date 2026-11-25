@@ -2,24 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shop | Fitoor</title>
+  <link rel="icon" href="/images/logo.png">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
   <div class="topbar">
-    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="https://www.pinterest.com/YOUR_PINTEREST" target="_blank" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-    <a href="https://wa.me/YOUR_NUMBER" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="/cart.html">Cart (<span data-cart-count>0</span>)</a>
   </div>
 
   <header class="site-header">
     <a href="/" class="logo"><img src="/images/logo.png" alt="Fitoor logo"></a>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Main navigation">
       <a href="/">Home</a>
       <a href="/shop.html" class="active">Shop</a>
       <a href="/about.html">About Us</a>
@@ -27,17 +28,19 @@
     </nav>
   </header>
 
-  <nav class="category-nav">
+  <nav class="category-nav" aria-label="Art categories">
     <a href="/shop.html?category=Paintings">Paintings</a>
     <a href="/shop.html?category=Drawings">Drawings</a>
     <a href="/shop.html?category=Mandalas">Mandalas</a>
     <a href="/shop.html?category=Calligraphy">Calligraphy</a>
   </nav>
 
-  <h1 id="shop-title" class="page-title">Shop</h1>
-
   <main class="shop-container">
-    <div id="product-grid" class="product-grid"><p class="empty">Loading...</p></div>
+    <h1 id="shop-title" class="page-title">Shop</h1>
+    <div id="filter-bar" class="filter-bar" aria-label="Filter products"></div>
+    <div id="product-grid" class="product-grid">
+      <p class="empty">Loading products…</p>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -45,7 +48,6 @@
     <p><a href="/about.html">About Us</a> · <a href="/contact.html">Contact Us</a></p>
   </footer>
 
-  <script src="/js/discount.js"></script>
-  <script src="/js/shop.js"></script>
+  <script src="/js/shop.js" defer></script>
 </body>
 </html>

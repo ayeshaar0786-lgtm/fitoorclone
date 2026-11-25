@@ -2,24 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fitoor | Pakistan's Art Store</title>
+  <link rel="icon" href="/images/logo.png">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
   <div class="topbar">
-    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://www.linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="https://www.pinterest.com/YOUR_PINTEREST" target="_blank" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-    <a href="https://wa.me/YOUR_NUMBER" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="/cart.html">Cart (<span data-cart-count>0</span>)</a>
   </div>
 
   <header class="site-header">
     <a href="/" class="logo"><img src="/images/logo.png" alt="Fitoor logo"></a>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Main navigation">
       <a href="/" class="active">Home</a>
       <a href="/shop.html">Shop</a>
       <a href="/about.html">About Us</a>
@@ -27,72 +28,182 @@
     </nav>
   </header>
 
-  <nav class="category-nav">
+  <nav class="category-nav" aria-label="Art categories">
     <a href="/shop.html?category=Paintings">Paintings</a>
     <a href="/shop.html?category=Drawings">Drawings</a>
     <a href="/shop.html?category=Mandalas">Mandalas</a>
     <a href="/shop.html?category=Calligraphy">Calligraphy</a>
   </nav>
 
-  <section class="hero-slider">
-    <img class="slide active" src="/images/photo1.jpg" alt="Artwork 1">
-    <img class="slide" src="/images/photo2.jpg" alt="Artwork 2">
-    <img class="slide" src="/images/photo3.jpg" alt="Artwork 3">
-    <img class="slide" src="/images/photo4.jpg" alt="Artwork 4">
-    <img class="slide" src="/images/photo5.jpg" alt="Artwork 5">
-    <img class="slide" src="/images/photo6.jpg" alt="Artwork 6">
-    <img class="slide" src="/images/photo7.jpg" alt="Artwork 7">
-    <img class="slide" src="/images/photo8.jpg" alt="Artwork 8">
-    <img class="slide" src="/images/photo9.jpg" alt="Artwork 9">
-    <img class="slide" src="/images/photo10.jpg" alt="Artwork 10">
-    <img class="slide" src="/images/photo11.jpg" alt="Artwork 11">
-    <img class="slide" src="/images/photo12.jpg" alt="Artwork 12">
+  <main>
+    <section class="hero-slider" aria-label="Featured artwork">
+      <div class="slide active" style="--bg:url('/images/slide1.jpg')">
+        <img src="/images/slide1.jpg" alt="Sailboat at sunset">
+      </div>
+      <div class="slide" style="--bg:url('/images/slide2.jpg')">
+        <img src="/images/slide2.jpg" alt="Arabic calligraphy in red and gold">
+      </div>
+      <div class="slide" style="--bg:url('/images/slide3.jpg')">
+        <img src="/images/slide3.jpg" alt="Floral artwork">
+      </div>
+      <div class="slide" style="--bg:url('/images/slide4.jpg')">
+        <img src="/images/slide4.jpg" alt="Woman looking into a mirror">
+      </div>
+      <div class="slide" style="--bg:url('/images/slide5.jpg')">
+        <img src="/images/slide5.jpg" alt="Old bazaar painting">
+      </div>
+      <button class="slider-btn prev" id="prevBtn" type="button" aria-label="Previous slide">&#10094;</button>
+      <button class="slider-btn next" id="nextBtn" type="button" aria-label="Next slide">&#10095;</button>
+      <div class="dots"></div>
+    </section>
 
-    <div class="hero-caption">
-      <h1>Original Paintings for Every Space</h1>
-      <p>Hand-painted artworks by local artists, each one unique.</p>
-      <a href="/shop.html" class="btn">Browse the Collection</a>
-    </div>
+    <section class="section">
+      <h1 class="section-title">Explore Our Art</h1>
+      <div class="cat-grid">
+        <a class="cat-card" href="/shop.html?category=Paintings">
+          <img src="/images/photo4.jpg" alt="Paintings">
+          <span>Paintings</span>
+        </a>
+        <a class="cat-card" href="/shop.html?category=Calligraphy">
+          <img src="/images/photo10.jpg" alt="Calligraphy">
+          <span>Calligraphy</span>
+        </a>
+        <a class="cat-card" href="/shop.html?category=Landscape">
+          <img src="/images/photo8.jpg" alt="Landscape art">
+          <span>Landscape</span>
+        </a>
+        <a class="cat-card" href="/shop.html?category=Animal%20Life">
+          <img src="/images/photo9.jpg" alt="Animal art">
+          <span>Animal Life</span>
+        </a>
+      </div>
+    </section>
 
-    <button class="slider-btn prev" id="prevBtn" aria-label="Previous">&#10094;</button>
-    <button class="slider-btn next" id="nextBtn" aria-label="Next">&#10095;</button>
-    <div class="dots"></div>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Our Categories</h2>
-    <div class="cat-grid">
-      <a class="cat-card" href="/shop.html?category=Paintings"><img src="/images/photo4.jpg" alt="Paintings"><span>Paintings</span></a>
-      <a class="cat-card" href="/shop.html?category=Landscape"><img src="/images/photo8.jpg" alt="Landscape"><span>Landscape</span></a>
-      <a class="cat-card" href="/shop.html?category=Still Life"><img src="/images/photo6.jpg" alt="Still Life"><span>Still Life</span></a>
-      <a class="cat-card" href="/shop.html?category=Animal Life"><img src="/images/photo9.jpg" alt="Animal Life"><span>Animal Life</span></a>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">Featured Artworks</h2>
-    <div id="featured" class="product-grid"></div>
-    <p class="center"><a href="/shop.html" class="btn">View All</a></p>
-  </section>
+    <section class="section">
+      <h2 class="section-title">Featured Artworks</h2>
+      <div id="featured" class="product-grid">
+        <p class="empty">Loading products…</p>
+      </div>
+      <p class="center"><a href="/shop.html" class="btn">View All Artworks</a></p>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <p>© 2026 Fitoor. All rights reserved.</p>
     <p><a href="/about.html">About Us</a> · <a href="/contact.html">Contact Us</a></p>
   </footer>
 
-  <script src="/js/discount.js"></script>
-  <script src="/js/slider.js"></script>
+  <script src="/js/slider.js" defer></script>
   <script>
-    fetch("/api/products")
-      .then((r) => r.json())
-      .then((d) => {
-        const list = Array.isArray(d) ? d : (d.products || []);
-        document.getElementById("featured").innerHTML =
-          list.slice(0, 4).map(productCard).join("") || "<p class='empty'>No products yet.</p>";
-      })
-      .catch(() => {
-        document.getElementById("featured").innerHTML = "<p class='empty'>Products could not load.</p>";
-      });
+    (() => {
+      const CART_KEY = "fitoorCart";
+      const featured = document.getElementById("featured");
+
+      function getCart() {
+        try {
+          const cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+          return Array.isArray(cart) ? cart : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function updateCartCount() {
+        const count = getCart().reduce(
+          (total, item) => total + (Number(item.quantity) || 0),
+          0
+        );
+        document.querySelectorAll("[data-cart-count]").forEach((node) => {
+          node.textContent = count;
+        });
+      }
+
+      function escapeHTML(value = "") {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        })[character]);
+      }
+
+      function renderCard(product) {
+        const id = String(product._id || product.id || "");
+        const name = escapeHTML(product.name || "Artwork");
+        const image = escapeHTML(product.image || "/images/logo.png");
+        const original = Number(product.price) || 20000;
+        const price = Math.round(original * 0.8);
+
+        return `
+          <article class="product-card">
+            <a href="/product.html?id=${encodeURIComponent(id)}">
+              <div class="img-wrap">
+                <img src="${image}" alt="${name}" loading="lazy">
+                <span class="badge">20% OFF</span>
+              </div>
+              <h3>${name}</h3>
+            </a>
+            <p class="price">
+              <span class="old-price">PKR ${original.toLocaleString("en-PK")}</span>
+              <span class="new-price">PKR ${price.toLocaleString("en-PK")}</span>
+            </p>
+            <button class="btn featured-add" type="button" data-id="${escapeHTML(id)}">Add to Cart</button>
+            <p class="cart-message" role="status" aria-live="polite"></p>
+          </article>`;
+      }
+
+      function addToCart(product) {
+        const cart = getCart();
+        const id = String(product._id || product.id);
+        const original = Number(product.price) || 20000;
+        const existing = cart.find((item) => String(item.id) === id);
+
+        if (existing) {
+          existing.quantity = (Number(existing.quantity) || 0) + 1;
+        } else {
+          cart.push({
+            id,
+            name: product.name || "Artwork",
+            image: product.image || "",
+            originalPrice: original,
+            price: Math.round(original * 0.8),
+            quantity: 1
+          });
+        }
+
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        updateCartCount();
+      }
+
+      updateCartCount();
+
+      fetch("/api/products")
+        .then((response) => {
+          if (!response.ok) throw new Error(`Request failed (${response.status})`);
+          return response.json();
+        })
+        .then((data) => {
+          const products = Array.isArray(data) ? data : (data.products || []);
+          const items = products.slice(0, 4);
+          featured.innerHTML = items.length
+            ? items.map(renderCard).join("")
+            : "<p class='empty'>No products available yet.</p>";
+
+          featured.querySelectorAll(".featured-add").forEach((button) => {
+            button.addEventListener("click", () => {
+              const product = items.find(
+                (item) => String(item._id || item.id) === button.dataset.id
+              );
+              if (!product) return;
+              addToCart(product);
+              button.nextElementSibling.textContent =
+                `${product.name || "Artwork"} added to your cart.`;
+            });
+          });
+        })
+        .catch((error) => {
+          console.error("Featured products error:", error);
+          featured.innerHTML =
+            "<p class='empty'>Products could not load. Please check the server.</p>";
+        });
+    })();
   </script>
 </body>
 </html>

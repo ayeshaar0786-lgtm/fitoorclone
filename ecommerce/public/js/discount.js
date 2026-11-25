@@ -1,7 +1,8 @@
 const DISCOUNT_PERCENT = 20;
+const SAMPLE_PRICE = 20000;
 
 function discountedPrice(price) {
-  return Math.round(price * (1 - DISCOUNT_PERCENT / 100));
+  return Math.round(Number(price) * (1 - DISCOUNT_PERCENT / 100));
 }
 
 function formatPKR(amount) {
@@ -9,21 +10,26 @@ function formatPKR(amount) {
 }
 
 function priceHTML(price) {
-  return `<span class="old-price">${formatPKR(price)}</span>
-          <span class="new-price">${formatPKR(discountedPrice(price))}</span>`;
+  const originalPrice = Number(price) || SAMPLE_PRICE;
+  const salePrice = discountedPrice(originalPrice);
+
+  return `
+    <span class="old-price">${formatPKR(originalPrice)}</span>
+    <span class="new-price">${formatPKR(salePrice)}</span>
+  `;
 }
 
-function productCard(p) {
-  const price = p.price ? priceHTML(p.price) : "<span>Price on request</span>";
-  const badge = p.price ? `<span class="badge">-${DISCOUNT_PERCENT}%</span>` : "";
+function productCard(product) {
+  const originalPrice = Number(product.price) || SAMPLE_PRICE;
+
   return `
-    <a class="product-card" href="/product.html?id=${p._id}">
+    <a class="product-card" href="/product.html?id=${product._id}">
       <div class="img-wrap">
-        <img src="${p.image}" alt="${p.name}">
-        ${badge}
+        <img src="${product.image || "/images/logo.png"}" alt="${product.name}">
+        <span class="badge">-${DISCOUNT_PERCENT}%</span>
       </div>
-      <h3>${p.name}</h3>
-      <p class="price">${price}</p>
+      <h3>${product.name}</h3>
+      <p class="price">${priceHTML(originalPrice)}</p>
     </a>
   `;
 }

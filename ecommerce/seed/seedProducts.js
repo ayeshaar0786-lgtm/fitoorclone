@@ -68,12 +68,40 @@ const products = [
     frame: "Included",
     dimension: "Large",
   },
+  {
+    name: "Sailboat at Sunset",
+    price: 0,
+    description: "Oil painting of a sailboat on calm water at sunset, with glowing clouds and golden reflections on the sea.",
+    image: "/images/slide1.jpg",
+    category: "Landscape",
+    medium: "Oil",
+    orientation: "Horizontal",
+  },
+  {
+    name: "Arabic Calligraphy Red and Gold",
+    price: 0,
+    description: "Textured red and black painting with large gold Arabic calligraphy and white script in the background.",
+    image: "/images/slide2.jpg",
+    category: "Calligraphy",
+    medium: "Acrylic on canvas",
+    orientation: "Square",
+  },
+  {
+    name: "Old Bazaar",
+    price: 0,
+    description: "Painting of a traditional bazaar with carved wooden balconies, a sunset sky, and people walking through the street.",
+    image: "/images/slide5.jpg",
+    category: "Landscape",
+    medium: "Oil",
+    orientation: "Square",
+  },
 ];
 
 async function seed() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB connected");
+
     await Product.deleteMany({});
     await Product.insertMany(products);
     console.log(`${products.length} products saved`);

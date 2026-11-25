@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | Fitoor</title>
+  <link rel="icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo">
+      <img src="/images/logo.png" alt="Fitoor logo">
+    </a>
+
+    <nav class="main-nav">
+      <a href="/">Home</a>
+      <a href="/shop.html">Shop</a>
+      <a href="/cart.html" class="active">
+        Cart (<span data-cart-count>0</span>)
+      </a>
+    </nav>
+  </header>
+
+  <main class="shop-container">
+    <h1 class="page-title">Your Shopping Cart</h1>
+    <div id="cart-items"></div>
+    <div id="cart-summary"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Fitoor. All rights reserved.</p>
+    <p><a href="/about.html">About Us</a> · <a href="/contact.html">Contact Us</a></p>
+  </footer>
+
+  <script src="/js/cart.js"></script>
+</body>
+</html>
