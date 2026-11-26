@@ -1,5 +1,5 @@
 const connectDB = require("../config/db");
-const Product = require("../models/Product");
+const Product = require("../models/product");
 
 module.exports = async function handler(req, res) {
   try {
